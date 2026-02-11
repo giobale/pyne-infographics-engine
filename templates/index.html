@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SalesBanana</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary: #6C63FF;
+      --primary-hover: #4F46E5;
+      --primary-light: #F0EDFF;
+      --dark: #1A1A2E;
+      --gray: #6B7280;
+      --gray-light: #E5E7EB;
+      --gray-bg: #F3F4F6;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: var(--gray-bg);
+      color: var(--dark);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    header {
+      width: 100%;
+      background: #fff;
+      border-bottom: 1px solid var(--gray-light);
+      padding: 16px 0;
+    }
+
+    header .inner {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    header h1 {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--dark);
+    }
+
+    header h1 span { color: var(--primary); }
+
+    header .tag {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--primary);
+      background: var(--primary-light);
+      padding: 2px 8px;
+      border-radius: 6px;
+    }
+
+    main {
+      max-width: 800px;
+      width: 100%;
+      padding: 32px 24px;
+      flex: 1;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      border: 1px solid var(--gray-light);
+      padding: 32px;
+    }
+
+    /* ── Input state ─────────────────────────── */
+
+    #state-input label {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: var(--dark);
+    }
+
+    #state-input .hint {
+      font-size: 13px;
+      color: var(--gray);
+      margin-bottom: 16px;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 140px;
+      padding: 14px 16px;
+      font-family: inherit;
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--dark);
+      border: 1px solid var(--gray-light);
+      border-radius: 10px;
+      resize: vertical;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+
+    textarea:focus { border-color: var(--primary); }
+
+    textarea::placeholder { color: #9CA3AF; }
+
+    .btn-row {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 16px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 10px 24px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.15s, transform 0.1s;
+    }
+
+    .btn:active { transform: scale(0.97); }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .btn-primary:hover { background: var(--primary-hover); }
+
+    .btn-primary:disabled {
+      background: var(--gray-light);
+      color: var(--gray);
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .shortcut {
+      font-size: 11px;
+      opacity: 0.7;
+      padding: 2px 6px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 4px;
+    }
+
+    /* ── Loading state ───────────────────────── */
+
+    #state-loading { text-align: center; padding: 64px 32px; }
+
+    .spinner {
+      width: 48px;
+      height: 48px;
+      border: 4px solid var(--primary-light);
+      border-top-color: var(--primary);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin: 0 auto 24px;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    #state-loading h2 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .step-text {
+      font-size: 14px;
+      color: var(--gray);
+      min-height: 20px;
+    }
+
+    /* ── Result state ────────────────────────── */
+
+    .result-image {
+      width: 100%;
+      border-radius: 10px;
+      border: 1px solid var(--gray-light);
+    }
+
+    .meta-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 16px;
+    }
+
+    .badge {
+      font-size: 12px;
+      font-weight: 500;
+      padding: 4px 12px;
+      border-radius: 8px;
+      background: var(--gray-bg);
+      color: var(--gray);
+    }
+
+    .badge.approved {
+      background: #ECFDF5;
+      color: #059669;
+    }
+
+    .badge.not-approved {
+      background: #FEF3C7;
+      color: #D97706;
+    }
+
+    .result-actions {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 20px;
+    }
+
+    /* ── Error ────────────────────────────────── */
+
+    .error-box {
+      background: #FEF2F2;
+      border: 1px solid #FECACA;
+      color: #DC2626;
+      padding: 12px 16px;
+      border-radius: 10px;
+      font-size: 14px;
+      margin-top: 16px;
+      display: none;
+    }
+
+    /* ── Utility ──────────────────────────────── */
+
+    .hidden { display: none !important; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="inner">
+    <h1>Sales<span>Banana</span></h1>
+    <span class="tag">v1</span>
+  </div>
+</header>
+
+<main>
+  <!-- Input State -->
+  <div id="state-input" class="card">
+    <label for="brief">Diagram Brief</label>
+    <p class="hint">Describe the diagram you want to generate in natural language.</p>
+    <textarea id="brief" placeholder="e.g. A pipeline diagram showing data flowing from Stripe and HubSpot through an ETL layer into a Snowflake warehouse, then to a BI dashboard"></textarea>
+    <div id="error" class="error-box"></div>
+    <div class="btn-row">
+      <button id="btn-generate" class="btn btn-primary" type="button">
+        Generate Diagram
+        <span class="shortcut">&#8984;&#9166;</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Loading State -->
+  <div id="state-loading" class="card hidden">
+    <div class="spinner"></div>
+    <h2>Generating your diagram</h2>
+    <p class="step-text" id="step-text">Selecting references...</p>
+  </div>
+
+  <!-- Result State -->
+  <div id="state-result" class="card hidden">
+    <img id="result-img" class="result-image" src="" alt="Generated diagram" />
+    <div class="meta-row">
+      <span class="badge" id="badge-rounds"></span>
+      <span class="badge" id="badge-approved"></span>
+    </div>
+    <div class="result-actions">
+      <button id="btn-again" class="btn btn-primary" type="button">Generate Another</button>
+    </div>
+  </div>
+</main>
+
+<script>
+(function () {
+  const stateInput   = document.getElementById('state-input');
+  const stateLoading = document.getElementById('state-loading');
+  const stateResult  = document.getElementById('state-result');
+  const briefEl      = document.getElementById('brief');
+  const btnGenerate  = document.getElementById('btn-generate');
+  const btnAgain     = document.getElementById('btn-again');
+  const errorBox     = document.getElementById('error');
+  const stepText     = document.getElementById('step-text');
+  const resultImg    = document.getElementById('result-img');
+  const badgeRounds  = document.getElementById('badge-rounds');
+  const badgeApproved = document.getElementById('badge-approved');
+
+  function show(el) { el.classList.remove('hidden'); }
+  function hide(el) { el.classList.add('hidden'); }
+
+  // Simulated step progress messages
+  const steps = [
+    'Selecting references...',
+    'Planning visual layout...',
+    'Applying brand style...',
+    'Generating image...',
+    'Evaluating quality...',
+    'Refining details...',
+    'Almost there...',
+  ];
+
+  let stepInterval = null;
+
+  function startStepProgress() {
+    let idx = 0;
+    stepText.textContent = steps[0];
+    stepInterval = setInterval(function () {
+      idx++;
+      if (idx < steps.length) {
+        stepText.textContent = steps[idx];
+      }
+    }, 4000);
+  }
+
+  function stopStepProgress() {
+    if (stepInterval) { clearInterval(stepInterval); stepInterval = null; }
+  }
+
+  async function generate() {
+    const brief = briefEl.value.trim();
+    if (!brief) {
+      errorBox.textContent = 'Please enter a diagram brief.';
+      errorBox.style.display = 'block';
+      briefEl.focus();
+      return;
+    }
+
+    errorBox.style.display = 'none';
+    hide(stateInput);
+    show(stateLoading);
+    startStepProgress();
+
+    try {
+      const res = await fetch('/api/generate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ brief: brief }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.error || 'Generation failed.');
+      }
+
+      // Show result
+      resultImg.src = data.image_url;
+      badgeRounds.textContent = data.rounds_taken === 1
+        ? '1 round'
+        : data.rounds_taken + ' rounds';
+      badgeApproved.textContent = data.approved ? 'Approved' : 'Max rounds reached';
+      badgeApproved.className = 'badge ' + (data.approved ? 'approved' : 'not-approved');
+
+      stopStepProgress();
+      hide(stateLoading);
+      show(stateResult);
+
+    } catch (err) {
+      stopStepProgress();
+      hide(stateLoading);
+      show(stateInput);
+      errorBox.textContent = err.message;
+      errorBox.style.display = 'block';
+    }
+  }
+
+  btnGenerate.addEventListener('click', generate);
+
+  btnAgain.addEventListener('click', function () {
+    briefEl.value = '';
+    hide(stateResult);
+    show(stateInput);
+    briefEl.focus();
+  });
+
+  // Cmd+Enter / Ctrl+Enter shortcut
+  document.addEventListener('keydown', function (e) {
+    if ((e.metaKey || e.ctrlKey) && e.key === 'Enter') {
+      if (!stateInput.classList.contains('hidden')) {
+        e.preventDefault();
+        generate();
+      }
+    }
+  });
+
+  briefEl.focus();
+})();
+</script>
+</body>
+</html>

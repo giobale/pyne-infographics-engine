@@ -1,0 +1,65 @@
+[
+  {
+    "id": "ref_001",
+    "file": "images/rag_pipeline_explainer.png",
+    "category": "pipeline",
+    "description": "Left-to-right RAG flow: user question input, search internal documents step with database icon, hand knowledge to LLM step, generation step with chip icon, grounded answer output. Bottom section split into definition box (left) and without/with comparison with leader insight (right). Dotted border containers, thin arrows between steps, gray background boxes for input/output.",
+    "tags": ["pipeline", "concept-explainer", "rag", "llm", "input-output"]
+  },
+  {
+    "id": "ref_002",
+    "file": "images/ai_agents_action_flow.png",
+    "category": "pipeline",
+    "description": "Agentic AI process chain: trigger event in black box with dotted border, five sequential steps connected by thin arrows (check history, select strategy, send reminder, log in ERP, escalate), each with a line icon above. AI Agents black badge centred below the chain. Outcome checklist on the right with checkmarks. Definition box bottom-left with dotted border.",
+    "tags": ["pipeline", "agents", "automation", "process-chain"]
+  },
+  {
+    "id": "ref_003",
+    "file": "images/pyne_value_chain_canvas.png",
+    "category": "canvas",
+    "description": "Strategic framework canvas: large outer border containing a grid. Left column: Context section. Centre: three stacked rows for Development, Capabilities, Guardrails. Right column narrows into an arrow shape containing Impact (top) and Insights (bottom). Each section has a bold title, a purple subtitle describing purpose, and an italic guiding question. Clean black borders, no fill colours.",
+    "tags": ["canvas", "framework", "strategy", "grid-layout"]
+  },
+  {
+    "id": "ref_004",
+    "file": "images/development_layer_three_stages.png",
+    "category": "staged-progression",
+    "description": "Three numbered cards in a horizontal row: Data (1), Model (2), Deployment (3). Each card has rounded corners, subtle shadow, a line icon at top, bold title, role label (foundation/engine/delivery), description text, and a purple question box at the bottom. Thin purple arrows between cards. Two quotes below the cards.",
+    "tags": ["staged-progression", "numbered", "cards", "data-value-chain"]
+  },
+  {
+    "id": "ref_005",
+    "file": "images/insights_to_implementation_timeline.png",
+    "category": "staged-progression",
+    "description": "Four-phase horizontal timeline: Context, PoC 1..N, Pilot 1..N, Ramp-Up. Each phase has a bold title and a purple subtitle (Clarity, Validation, De-Risking, Benefit Realization). Circles between PoC and Pilot phases with looping arrows suggesting iteration. INSIGHTS labels above the transition points. Detailed description text below each phase. Dotted vertical separators.",
+    "tags": ["staged-progression", "timeline", "innovation", "phases"]
+  },
+  {
+    "id": "ref_006",
+    "file": "images/four_risk_categories_pinwheel.png",
+    "category": "matrix",
+    "description": "Four-node pinwheel layout: four circles connected by an organic curved shape in the centre. Top-left: Operational Risk (purple highlight). Top-right: Cyber Risks (dark). Bottom-left: Third Party & Vendor Risk (light gray). Bottom-right: Shadow AI (steel blue). Each node has a line icon inside a gray circle, bold title beside it, and a one-line description. Gradient fills on the connecting shape.",
+    "tags": ["matrix", "hub-and-spoke", "risk", "four-quadrant"]
+  },
+  {
+    "id": "ref_007",
+    "file": "images/risk_realities_four_cards.png",
+    "category": "comparison-cards",
+    "description": "Four vertical cards side by side, each with: a gray circle containing a line icon at the top, bold title, 'What it means' section with description text, and 'Consequence' section with a concrete example. Cards use distinct gradient backgrounds: purple, dark gray, medium gray, steel blue. Rounded bottom corners, flat top meeting the icon circle.",
+    "tags": ["comparison-cards", "risk", "gradient-cards", "icon-top"]
+  },
+  {
+    "id": "ref_008",
+    "file": "images/ai_opportunity_map.png",
+    "category": "matrix",
+    "description": "Split layout: left side is a light gray box with two-step instructions (Generate Use Cases, Plot and Prioritise) with bold labels and supporting text. Right side is a 2x2 quadrant matrix with Impact (Business Value) on the Y-axis and Feasibility on the X-axis. Top-right quadrant labelled 'Automate First' with dotted border, bottom-left labelled 'Low Priority'. Clean black axis lines.",
+    "tags": ["matrix", "2x2", "prioritisation", "quadrant"]
+  },
+  {
+    "id": "ref_009",
+    "file": "images/five_questions_leaders_ai.png",
+    "category": "comparison-cards",
+    "description": "Five vertical pill-shaped cards in a row. Each card has: a gray inset circle at top with a coloured line icon, a bold category title (Data, Decisions, Measurement, Ownership, Failure), a guiding question, and a large number at the bottom. All cards use the same light gray background with rounded ends. Purple accent on subtitle text.",
+    "tags": ["comparison-cards", "numbered", "pill-shape", "leadership"]
+  }
+]

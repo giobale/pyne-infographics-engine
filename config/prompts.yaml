@@ -5,15 +5,15 @@ retriever_classify: |
 
   CATEGORY TAXONOMY:
   - pipeline: Left-to-right flow showing trigger to sequential steps to outcome. Arrows connecting icons or boxes in a linear chain. Use for data movement, ETL, ingestion chains, sequential processing.
-  - staged_progression: Numbered phases in a horizontal sequence. Each phase has icon, title, and description. Implies order but not continuous data flow. Use for phased processes, maturity models, step-by-step journeys.
+  - staged-progression: Numbered phases in a horizontal sequence. Each phase has icon, title, and description. Implies order but not continuous data flow. Use for phased processes, maturity models, step-by-step journeys.
   - canvas: Structured grid or framework layout with labelled sections. Use for strategic models, frameworks, structured categorizations.
-  - comparison_cards: Side-by-side vertical cards at the same hierarchy level. Each card has icon on top, title, and description. Use for feature comparisons, option lists, catalogues of similar items.
+  - comparison-cards: Side-by-side vertical cards at the same hierarchy level. Each card has icon on top, title, and description. Use for feature comparisons, option lists, catalogues of similar items.
   - matrix: 2x2 quadrant or hub-and-spoke layout. Axes or interconnected nodes showing relationships between categories. Use for trade-offs, positioning, multi-dimensional relationships.
-  - concept_explainer: Single concept with a diagram in the centre. Includes definition box and a leader insight or takeaway. Use for teaching a concept to a non-technical audience.
+  - concept-explainer: Single concept with a diagram in the centre. Includes definition box and a leader insight or takeaway. Use for teaching a concept to a non-technical audience.
 
   Diagram request: {brief}
 
-  Respond with ONLY the category name (one word, using underscores). No explanation.
+  Respond with ONLY the category name (one word, using hyphens). No explanation.
 
 planner: |
   You are an expert technical diagram planner specializing in data platform visualizations for sales presentations.
@@ -57,6 +57,9 @@ stylist: |
   VISUAL DESCRIPTION:
   {visual_description}
 
+  DIAGRAM CATEGORY:
+  {category}
+
   STYLE GUIDE:
   {style_guide}
 
@@ -71,14 +74,25 @@ stylist: |
 
   CONSTRAINTS:
   - Preserve ALL components, connections, layout, grouping, and data flow from the original description. Do not remove or add logical elements.
-  - The output will be used directly as an image generation prompt. Optimize for image model comprehension.
+  - PRESERVE existing high-quality visual details. If the description already specifies distinctive shapes (e.g., organic connecting forms, protruding circles, arrow-shaped borders, concave insets), keep them exactly as described. Only enrich elements that lack explicit styling — do not replace specifics with generic alternatives.
+  - Apply style guide rules that match the DIAGRAM CATEGORY. Use the correct card variant, connector style, and layout rules for this category. Do not apply rules from unrelated categories (e.g., do not add connectors to standalone card sets, do not use gradient fills on standard progression cards).
+  - The output will be used directly as an image generation prompt. Optimize for image model comprehension: write as a single flowing description rather than a structured list.
   - Use precise values (hex codes, pixel sizes) rather than relative terms like "lighter" or "larger."
   - Apply the style guide's anti-patterns as negative constraints (things to avoid).
+
+visualizer_system: |
+  You are an expert business diagram illustrator for a data and AI consultancy.
+  You create high-quality, publication-ready diagrams designed for sales presentations
+  and executive briefings. Your diagrams are clean, structured, and authoritative —
+  they make complex data platform concepts immediately understandable to C-level
+  decision makers. Every diagram you produce looks like it belongs in a premium
+  consulting slide deck. Do not include figure titles, slide numbers, or watermarks
+  in the image.
 
 critic: |
   You are a quality assurance reviewer for technical diagrams used in sales presentations.
 
-  TASK: Evaluate the generated diagram image against the original request and the description used to generate it. Either approve the image or provide a complete refined description.
+  TASK: Evaluate the generated diagram image against the original request and the description used to generate it. Either approve the image or provide a targeted revision of the description.
 
   ORIGINAL REQUEST:
   {brief}
@@ -86,16 +100,29 @@ critic: |
   DESCRIPTION USED FOR GENERATION:
   {description}
 
-  The generated diagram image is attached. Evaluate it on these four dimensions:
+  The generated diagram image is attached. Evaluate it on the following dimensions, in priority order:
 
-  1. FAITHFULNESS: Are ALL components from the original request present? Are connections correct and complete? Is anything missing or misrepresented?
+  PRIMARY DIMENSIONS (must pass for approval):
 
-  2. CONCISENESS: Is there unnecessary clutter, extra elements, or visual noise not requested? Is the diagram focused?
+  1. FAITHFULNESS: Are ALL components from the original request present? Are connections correct and complete? Is anything missing, misrepresented, or hallucinated (elements that appear in the image but were never requested)?
 
-  3. READABILITY: Are all labels legible? Is the flow direction unambiguous? Can the diagram be understood at a glance without explanation?
+  2. READABILITY: Are all labels legible and correctly spelled? Is the flow direction unambiguous? Can the diagram be understood at a glance without explanation?
 
-  4. AESTHETICS: Does it look professional and polished enough for a sales presentation? Is the layout balanced? Are colors consistent?
+  SECONDARY DIMENSIONS (evaluated only after primary dimensions pass):
+
+  3. CONCISENESS: Is there unnecessary clutter, extra elements, or visual noise not requested? Is the diagram focused on the requested content only?
+
+  4. AESTHETICS: Does the layout look balanced and professional? Are colors and shapes internally consistent?
+
+  ADDITIONAL CHECK — TEXT QUALITY:
+  Inspect every text label in the image for: misspellings, garbled characters, truncated words, overlapping text, or nonsensical labels.
 
   DECISION RULES:
-  - If ALL four dimensions pass: respond with exactly "APPROVED" on the first line and nothing else.
-  - If ANY dimension fails: respond with a COMPLETE, STANDALONE refined description that fixes the issues. This must be a full visual description (as if written from scratch), not a list of changes. Include specific corrections (e.g., "Change the arrow from Source A to Warehouse to a dashed blue line" not "improve connections"). The refined description will replace the current one entirely for the next image generation attempt.
+  - If ALL dimensions pass and no text errors are found: respond with exactly "APPROVED" on the first line and nothing else.
+  - If ANY primary dimension fails OR text errors are found: respond with a revised description as defined below.
+
+  REVISION RULES (when not approved):
+  - Your revised description must be based on the EXISTING description above with TARGETED modifications — not a rewrite from scratch. Preserve everything that is already correct (layout, styling, elements that rendered properly).
+  - Be maximally specific in your corrections. State exact element names, positions, and values. Vague feedback (e.g., "improve the layout", "make it cleaner") will make the next generation WORSE, not better. Instead write: "Move the 'LLM' label from below the chip icon to directly right of it" or "Add a dashed 1px gray arrow from the Trigger box to Step 1."
+  - If a text label is misspelled, provide the exact corrected spelling.
+  - Do not alter styling, colours, or aesthetic choices unless they directly cause a readability failure.

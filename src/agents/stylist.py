@@ -14,7 +14,7 @@ def _load_style_guide() -> str:
         return f.read()
 
 
-def apply_style(visual_description: str) -> str:
+def apply_style(visual_description: str, category: str = "") -> str:
     """
     Rewrite the visual description with explicit style directives
     from the style guide (hex colors, shapes, typography, connector styles).
@@ -24,6 +24,7 @@ def apply_style(visual_description: str) -> str:
     prompt = get_prompt(
         "stylist",
         visual_description=visual_description,
+        category=category,
         style_guide=style_guide,
     )
 

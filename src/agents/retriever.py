@@ -13,11 +13,11 @@ logger = logging.getLogger(__name__)
 
 VALID_CATEGORIES = {
     "pipeline",
-    "staged_progression",
+    "staged-progression",
     "canvas",
-    "comparison_cards",
+    "comparison-cards",
     "matrix",
-    "concept_explainer",
+    "concept-explainer",
 }
 
 

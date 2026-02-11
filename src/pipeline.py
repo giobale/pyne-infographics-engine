@@ -63,7 +63,7 @@ def generate_diagram(brief: str, max_rounds: int | None = None) -> PipelineResul
 
     # Step 3: Apply style
     logger.info("--- Step 3: Stylist ---")
-    styled_description = stylist.apply_style(planner_output.description)
+    styled_description = stylist.apply_style(planner_output.description, category)
     _save_text(run_dir, "03_stylist_description.md", styled_description)
 
     # ── Phase 2: Iterative Refinement ─────────────────────────────────

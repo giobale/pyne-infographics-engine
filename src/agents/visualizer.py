@@ -4,15 +4,27 @@ import base64
 import logging
 
 from src.config import client, settings
+from src.utils.prompt_loader import get_prompt
 
 logger = logging.getLogger(__name__)
+
+_system_prompt: str | None = None
+
+
+def _get_system_prompt() -> str:
+    """Load and cache the visualizer system prompt."""
+    global _system_prompt
+    if _system_prompt is None:
+        _system_prompt = get_prompt("visualizer_system")
+    return _system_prompt
 
 
 def generate_image(styled_description: str) -> bytes:
     """
     Generate an image using the configured image generation model.
 
-    The styled_description IS the prompt — no additional wrapping.
+    Prepends the visualizer system prompt to the styled description
+    to set the role and quality expectations for the image model.
     Returns raw image bytes (PNG/WEBP/JPEG depending on config).
     """
     logger.info(
@@ -22,9 +34,11 @@ def generate_image(styled_description: str) -> bytes:
         settings.image_quality.value,
     )
 
+    full_prompt = f"{_get_system_prompt()}\n\n{styled_description}"
+
     response = client.images.generate(
         model=settings.image_model,
-        prompt=styled_description,
+        prompt=full_prompt,
         size=settings.image_size.value,
         quality=settings.image_quality.value,
         n=1,

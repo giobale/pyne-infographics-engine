@@ -9,6 +9,7 @@ from pathlib import Path
 from src.agents import critic, planner, retriever, stylist, visualizer
 from src.config import settings
 from src.models import PipelineResult, RunMetadata
+from src.postprocessing import adapt_for_slides
 from src.utils.image_utils import save_image
 
 logger = logging.getLogger(__name__)
@@ -29,7 +30,11 @@ def _save_text(run_dir: Path, filename: str, content: str) -> None:
         f.write(content)
 
 
-def generate_diagram(brief: str, max_rounds: int | None = None) -> PipelineResult:
+def generate_diagram(
+    brief: str,
+    max_rounds: int | None = None,
+    slide_format: str = "original",
+) -> PipelineResult:
     """
     Execute the full pipeline:
         Brief -> Retriever -> Planner -> Stylist -> Visualizer <-> Critic -> Image
@@ -113,6 +118,10 @@ def generate_diagram(brief: str, max_rounds: int | None = None) -> PipelineResul
         )
 
     # ── Save final outputs ────────────────────────────────────────────
+
+    if slide_format != "original":
+        save_image(final_image_bytes, run_dir / "final_raw.png")
+        final_image_bytes = adapt_for_slides(final_image_bytes, slide_format)
 
     final_path = save_image(final_image_bytes, run_dir / "final.png")
 

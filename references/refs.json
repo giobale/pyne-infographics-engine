@@ -3,63 +3,63 @@
     "id": "ref_001",
     "file": "images/rag_pipeline_explainer.png",
     "category": "pipeline",
-    "description": "Left-to-right pipeline flow occupying the middle band of the slide. **Flow (left to right):** (1) Gray rounded box labeled 'Input:' containing bold question text and a question-mark icon at bottom-left. (2) Solid arrow to a document-stack + database line-icon pair labeled 'Search internal documents' above and 'Internal Documents: Policies, Guidelines, Procedures' below. (3) Solid arrow to a brain-handoff line-icon labeled 'Hand Knowledge / Context to LLM'. (4) Solid arrow to a circuit-chip line-icon labeled 'Generation' above and 'LLM' in bold below. (5) Solid arrow to a gray rounded box labeled 'Output:' containing bold answer text referencing a specific policy clause. **Bottom zone** uses the standard definition + takeaway layout. Left third: dotted-border definition box. Right two-thirds: three stacked text blocks — 'Without RAG:' (negative framing), 'With RAG:' (positive framing), and 'Leader's Insight:' (strategic takeaway) with bold emphasis on key terms.",
-    "tags": ["pipeline", "concept-explainer", "rag", "llm", "input-output", "definition-box", "line-icons"]
+    "description": "Left-to-right linear pipeline with five stages: (1) input container with a question, (2) document-search step, (3) knowledge-handoff step, (4) LLM generation step, (5) output container with an answer. Arrows connect each stage sequentially. Below the pipeline: a definition box on the left third and a three-part comparison zone (Without X / With X / Leader's Insight) on the right two-thirds.",
+    "tags": ["pipeline", "concept-explainer", "input-output", "definition-box"]
   },
   {
     "id": "ref_002",
     "file": "images/ai_agents_action_flow.png",
     "category": "pipeline",
-    "description": "Left-to-right process chain with trigger, steps, and outcome. **Trigger (far left):** Black filled rounded square with dotted outer border containing a white email/notification icon, labeled 'Invoice is 3 days past due' in bold below. Thin arrow exits right. **Five sequential steps:** Each step is a line-icon (no container box) with a numbered bold label below: (1) document-review icon / 'Check payment history & credit profile', (2) funnel-checkmark icon / 'Select follow-up strategy', (3) envelope icon / 'Send payment reminder', (4) database-ledger icon / 'Log activity in ERP', (5) person-escalation icon / 'Escalate or schedule next action'. Thin solid arrows connect each step. **Centre badge below chain:** Black filled rounded rectangle with robot/circuit icon left and bold white 'AI Agents' text right, framed by small decorative circuit nodes. **Outcome (far right):** Three lines each prefixed by a purple checkmark: 'DSO reduced', 'Less human intervention', 'X min saved'. Thin arrow from last step to outcome. **Bottom-left:** Standard dotted-border definition box.",
-    "tags": ["pipeline", "agents", "automation", "process-chain", "trigger-to-outcome", "line-icons", "definition-box"]
+    "description": "Trigger-to-outcome process chain. A trigger event on the far left connects via arrows to five numbered sequential steps, each represented by an icon and label. The steps sit inside a bounded zone with a central badge identifying the agent type. The chain terminates on the right in an outcome list of three benefit statements. A definition box sits below the flow.",
+    "tags": ["pipeline", "process-chain", "trigger-to-outcome", "definition-box"]
   },
   {
     "id": "ref_003",
     "file": "images/pyne_value_chain_canvas.png",
     "category": "canvas",
-    "description": "Single large outer rectangle with thin black border spanning nearly full slide width. Section subtitle 'OVERVIEW' in small caps above the grid. **Internal structure:** 3-column × 3-row grid with thin black dividers. **Left column (narrow, single tall cell):** 'CONTEXT' header, purple subtitle 'Clarify why this AI initiative matters.', italic guiding question below. **Centre column (wide, three stacked rows):** Top: 'DEVELOPMENT' — purple subtitle about data-to-value, italic question with bold keywords (data, models, deployment). Middle: 'CAPABILITIES' — purple subtitle about enablers, italic question with bold keywords (people, processes, technologies). Bottom: 'GUARDRAILS' — purple subtitle about safety/compliance, italic question with bold keywords (governance, risk, compliance). **Right column (medium width):** Column border tapers to a rightward-pointing triangular point, forming an arrow silhouette. Top half: 'IMPACT' — purple subtitle about measurement, italic question with bold 'measurable, sustained business impact'. Bottom half: 'INSIGHTS' — purple subtitle about continuous improvement, italic question with bold 'continuous improvement and responsible scaling'. **Styling:** No fill colours — purely black-line grid on white. Framework-template aesthetic.",
-    "tags": ["canvas", "framework", "strategy", "grid-layout", "arrow-shape", "no-fill", "guiding-questions"]
+    "description": "Single bordered framework grid spanning full width. Asymmetric column layout: a narrow left column (one tall cell: Context), a wide centre column (three stacked rows: Development, Capabilities, Guardrails), and a right column (two rows: Impact, Insights) whose outer edge tapers into a rightward-pointing arrow shape. Each cell contains a header, a subtitle, and a guiding question. Blank template with no data filled in.",
+    "tags": ["canvas", "framework", "strategy", "grid-layout", "arrow-shape", "guiding-questions"]
   },
   {
     "id": "ref_004",
     "file": "images/development_layer_three_stages.png",
     "category": "staged-progression",
-    "description": "Three equally-sized standard cards in a horizontal row with spacing. **Card structure (repeated ×3):** Number badge top-left (1, 2, 3). Centre-top line-icon: Card 1 stacked-discs/database, Card 2 circuit-chip/processor, Card 3 cloud-upload/deployment. Bold uppercase title ('DATA', 'MODEL', 'DEPLOYMENT'). Bold role label ('The foundation.', 'The engine.', 'The delivery.') followed by description text. Bottom: lavender rounded rectangle containing a purple italic guiding question. **Connectors:** Thin purple right-pointing arrows between cards at vertical centre of gap. **Below cards:** Two centred quotation lines — '\"Data without a model is just storage.\"' and '\"A model without deployment is just a science experiment.\"'",
-    "tags": ["staged-progression", "numbered", "cards", "data-value-chain", "three-stage", "line-icons", "quote-footer"]
+    "description": "Three equally-sized cards in a horizontal row connected by arrows. Each card contains: a number badge (1, 2, 3), an icon, a title, a role label with description text, and a guiding question at the bottom. Below the card row: two centred quotation lines.",
+    "tags": ["staged-progression", "numbered", "cards", "data-value-chain", "three-stage", "quote-footer"]
   },
   {
     "id": "ref_005",
     "file": "images/insights_to_implementation_timeline.png",
     "category": "staged-progression",
-    "description": "Four-phase horizontal timeline with no containing box. Subtitle in small caps: 'A GENERIC VIEW ON THE PHASE OF (INNOVATION) PROJECTS'. **Phase structure:** Each phase has a bold black title on a horizontal baseline ('Context', 'PoC 1..N', 'Pilot 1..N', 'Ramp-Up') and a purple subtitle directly below ('Clarity', 'Validation', 'De-Risking', 'Benefit Realization'). Below each subtitle: detailed description text covering key questions (Context references SCQA; PoC covers Desirability/Feasibility/Viability as bold sub-labels; Pilot covers scaling and funding; Ramp-Up covers rollout and governance). **Transition elements:** Thin dotted vertical separator lines between phases. Between PoC and Pilot: two open circles (unfilled, thin black stroke) above the phase titles with small curved looping arrows suggesting iteration. **INSIGHTS labels:** Purple bold 'INSIGHTS' appears above each transition point (three instances), connected by thin lines forming a stepped path that rises across the timeline. **Entry point:** Small downward arrow enters 'Context' from above-left. Layout is sparse and text-heavy — circles and INSIGHTS labels are the only graphic elements.",
+    "description": "Four-phase horizontal timeline. Each phase has a title, a subtitle, and detailed description text. Vertical dividers separate the phases. Iteration loops (circles with curved return arrows) appear between the middle two phases to indicate repeatable cycles. Labeled 'Insights' markers sit above each transition point, connected in a stepped ascending path. An entry arrow leads into the first phase from above.",
     "tags": ["staged-progression", "timeline", "innovation", "phases", "iterative-loops", "insights-labels", "text-heavy"]
   },
   {
     "id": "ref_006",
     "file": "images/four_risk_categories_pinwheel.png",
-    "category": "matrix",
-    "description": "Four-node pinwheel/clover shape centred on the slide. Four large circles in a 2×2 grid connected by an organic hourglass/bowtie form that pinches at centre, creating a continuous flowing silhouette. **Node positions and fills:** Top-left: purple/violet gradient — gear-warning line-icon. Top-right: dark charcoal/black — warning-triangle/network line-icon. Bottom-left: light warm gray — people-network line-icon. Bottom-right: steel blue/slate — layered-figure/incognito line-icon. Each icon sits inside a gray inner circle within its node. Central connecting shape uses gradient fills blending between adjacent node colours. **Labels (outside the shape):** Each node has bold black title and one-line description on its outer side: 'Operational Risk' / 'When AI doesn't work as expected', 'Cyber Risks' / 'When AI is exploited or attacked', 'Third Party & Vendor Risk' / 'When someone else's AI becomes your problem', 'Shadow AI' / 'When ungoverned AI creates blind spots'. No arrows or connectors beyond the organic central shape.",
-    "tags": ["matrix", "hub-and-spoke", "risk", "four-quadrant", "pinwheel", "gradient-fills", "organic-shape"]
+    "category": "wheel",
+    "description": "Four-node pinwheel arrangement in a 2×2 layout. Four circles are connected by an organic hourglass shape that pinches at the centre, forming a continuous clover-like silhouette. Each node contains an icon. Title and one-line description labels sit outside each node on its outer side. No arrows or connectors beyond the central organic shape.",
+    "tags": ["hub-and-spoke", "risk", "four-quadrant", "pinwheel", "organic-shape"]
   },
   {
     "id": "ref_007",
     "file": "images/risk_realities_four_cards.png",
     "category": "comparison-cards",
-    "description": "Four gradient cards side by side in a horizontal row with small gaps. Each uses the gradient card variant with protruding icon circle. **Card contents (left to right):** Card 1 (purple gradient): gear-with-warning icon, 'Operational Risk', model accuracy degradation scenario, consequence: fraud model degrades 95% to 60%. Card 2 (dark charcoal gradient): warning-triangle icon, 'Cyber Risk', prompt injection and data poisoning scenario, consequence: bot reveals internal policies. Card 3 (medium gray gradient): people-network icon, 'Vendor Risk', black-box vendor dependency scenario, consequence: vendor under cyber attack or API down. Card 4 (steel blue gradient): layered-figure/incognito icon, 'Shadow AI', ungoverned tool usage scenario, consequence: employee pastes GDPR data into GPT. **Text structure per card:** Bold white title, bold 'What it means:' section with descriptive paragraph, bold 'Consequence:' section with concrete example. All text white on dark backgrounds.",
-    "tags": ["comparison-cards", "risk", "gradient-cards", "icon-top", "four-column", "consequence-examples", "protruding-circles"]
+    "description": "Four comparison cards in a horizontal row. Each card has a protruding icon circle at the top, a category title, a 'What it means' description section, and a 'Consequence' section with a concrete example. Cards represent distinct categories at the same level.",
+    "tags": ["comparison-cards", "risk", "icon-top", "four-column", "consequence-examples", "protruding-circles"]
   },
   {
     "id": "ref_008",
     "file": "images/ai_opportunity_map.png",
     "category": "matrix",
-    "description": "Split layout: two side-by-side regions. **Left half:** Tall light gray rounded rectangle containing two text blocks. Block 1: bold 'Step 1: Generate Use Cases' followed by paragraph about brainstorming AI applications, referencing 'AI Value Canvas' in bold. Block 2: bold 'Step 2: Plot on a 2×2 and Prioritise' in purple, followed by paragraph about prioritising by Impact and feasibility with bold keywords. **Right half:** 2×2 quadrant matrix with thin black axis lines. Y-axis: 'Impact (Business Value)' in bold at top. X-axis: 'Feasibility' in bold at right. Top-right quadrant: dotted-border rectangle with purple text 'Automate First'. Bottom-left quadrant: dotted-border rectangle with purple text 'Low Priority'. Other two quadrants empty/unlabelled. Axes meet at centre with clean right-angle intersection. Matrix is a blank template — no data points, grid lines, or icons.",
+    "description": "Split layout with two side-by-side regions. Left half: a text container with two sequential instruction steps. Right half: a 2×2 quadrant matrix with labeled axes (vertical: Impact, horizontal: Feasibility). Two opposing quadrants carry priority labels; the other two are empty. The matrix is a blank template with no data points plotted.",
     "tags": ["matrix", "2x2", "prioritisation", "quadrant", "split-layout", "template", "steps-plus-visual"]
   },
   {
     "id": "ref_009",
     "file": "images/five_questions_leaders_ai.png",
     "category": "comparison-cards",
-    "description": "Five pill cards in a horizontal row with small gaps. All uniform light gray fill. **Card contents (left to right):** Card 1: database/filter icon (purple), 'Data', 'Do we have it – and can we use it?', number '1'. Card 2: scales/balance icon (purple), 'Decisions', 'What does it decide – and can we explain why?', number '2'. Card 3: bar-chart/trend icon (purple), 'Measurement', 'How will we know it's working?', number '3'. Card 4: chain-link/key icon (purple), 'Ownership', 'Who's accountable after go-live?', number '4'. Card 5: lightning-bolt icon (purple), 'Failure', 'What happens when it breaks?', number '5'. Each card has the concave inset icon circle at top, bold black category title centred, regular-weight guiding question below, and oversized bold number anchored at bottom. No connectors between cards — independent set.",
+    "description": "Five pill-shaped cards in a horizontal row with no connectors between them. Each card contains: an inset icon at the top, a category title, a guiding question, and a large number at the bottom. Cards stand independently as a numbered set.",
     "tags": ["comparison-cards", "numbered", "pill-shape", "leadership", "five-column", "icon-inset", "guiding-questions"]
   }
 ]

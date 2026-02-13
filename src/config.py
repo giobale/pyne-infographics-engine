@@ -33,6 +33,7 @@ class Settings(BaseSettings):
 
     # API Keys
     openai_api_key: str
+    google_api_key: str | None = None
 
     # LLM Config
     llm_model: str = "gpt-4o"
@@ -66,6 +67,12 @@ class Settings(BaseSettings):
         return path
 
 
+IMAGE_MODELS: dict[str, dict] = {
+    "gpt-image-1":                {"label": "GPT Image 1 (OpenAI)",    "provider": "openai"},
+    "dall-e-3":                   {"label": "DALL-E 3 (OpenAI)",       "provider": "openai"},
+    "gemini-2.0-flash-preview-image-generation": {"label": "Gemini 2.0 Flash (Google)", "provider": "google"},
+}
+
 # Module-level singleton
 settings = Settings()
 
@@ -77,3 +84,18 @@ logging.basicConfig(
 
 # OpenAI client singleton
 client = OpenAI(api_key=settings.openai_api_key)
+
+# Lazy Google GenAI client
+_google_client = None
+
+
+def get_google_client():
+    global _google_client
+    if _google_client is None:
+        if not settings.google_api_key:
+            raise ValueError(
+                "GOOGLE_API_KEY is required for Gemini models. Set it in .env."
+            )
+        from google import genai
+        _google_client = genai.Client(api_key=settings.google_api_key)
+    return _google_client

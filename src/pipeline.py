@@ -34,6 +34,7 @@ def generate_diagram(
     brief: str,
     max_rounds: int | None = None,
     slide_format: str = "original",
+    image_model: str | None = None,
 ) -> PipelineResult:
     """
     Execute the full pipeline:
@@ -84,7 +85,7 @@ def generate_diagram(
         )
 
         # Generate image
-        image_bytes = visualizer.generate_image(current_description)
+        image_bytes = visualizer.generate_image(current_description, image_model=image_model)
         save_image(image_bytes, run_dir / f"04_round_{round_num}_image.png")
         final_image_bytes = image_bytes
         rounds_taken = round_num
@@ -131,7 +132,7 @@ def generate_diagram(
         category=category,
         num_references=len(refs),
         llm_model=settings.llm_model,
-        image_model=settings.image_model,
+        image_model=image_model or settings.image_model,
         rounds_taken=rounds_taken,
         approved=approved,
         timestamp=datetime.now().isoformat(),

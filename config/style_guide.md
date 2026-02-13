@@ -1,20 +1,15 @@
-# Style Guide — SalesBanana
+# Infographic Style Guide — SalesBanana
 
 ## Brand Identity
 
-All generated diagrams must look like they belong in the same slide deck as existing Pyne materials. The aesthetic is **clean, authoritative, and modern** — designed for C-level and senior leadership audiences in a consulting context. The visual language says: "We are structured thinkers who make complex things simple."
+All generated diagrams must match the visual identity of Pyne materials. The aesthetic is **clean, minimal, and Nordic professional** — designed for C-level and senior leadership audiences in a consulting context. The visual language says: "We are structured thinkers who make complex things simple."
 
 ---
 
-## Slide Format
+## Canvas Format
 
-- All slides are **wide horizontal 16:9 landscape** format
+- All infographics are **wide horizontal 16:9 landscape** format
 - Background is always **white (`#FFFFFF`)** — never dark-mode, never coloured
-- Every slide follows a **three-zone vertical structure**:
-  - **Top zone**: Title block (top-left aligned)
-  - **Middle zone**: Primary diagram / visual content
-  - **Bottom zone**: Definition box and/or takeaway section (present on concept-explainer and most pipeline slides; omitted on card-only layouts)
-- Clear vertical whitespace separates each zone — they never overlap or crowd
 
 ---
 
@@ -22,13 +17,20 @@ All generated diagrams must look like they belong in the same slide deck as exis
 
 | Role | Hex | Usage |
 |---|---|---|
-| Primary accent | `#6C63FF` | Titles, subtitles, highlight labels, active states, key callouts |
-| Dark / anchor | `#1A1A2E` | Body text, primary card backgrounds, strong containers |
-| Mid gray | `#6B7280` | Secondary text, descriptions, supporting copy |
-| Light gray | `#F3F4F6` | Card backgrounds, definition boxes, section fills |
-| White | `#FFFFFF` | Slide background, card surfaces |
+| Pyne Purple (Primary) | `#4F47E6` | Titles, subtitles, highlight labels, active states, key callouts |
+| Pyne Purple Light | `#EEEDFC` | Callout boxes, light purple fills, hover states |
+| Pyne Purple Dark | `#3F39B8` | Pressed states, gradient endpoints, emphasis accents |
+| Text Primary | `#0A0A0A` | Body text, headings, strong containers |
+| Text Secondary | `#374151` | Supporting text, descriptions |
+| Text Muted | `#6B7280` | Tertiary text, placeholders, captions |
+| Background | `#FAFAFA` | Card backgrounds, definition boxes, section fills |
+| White | `#FFFFFF` | Canvas background, card surfaces |
+| Border | `#E5E7EB` | Card borders, dividers, subtle separators |
+| Success | `#10B981` / `#ECFDF5` | Positive indicators, confirmation states |
+| Error | `#DC2626` / `#FEE2E2` | Error indicators, warning states |
+| Warning | `#F59E0B` / `#FEF3C7` | Caution indicators, attention states |
 | Steel blue | `#8C9BAA` | Tertiary card variant, muted accents |
-| Gradient — purple | `#6C63FF → #4F46E5` | Left-most or primary card in comparison layouts |
+| Gradient — purple | `#4F47E6 → #3F39B8` | Left-most or primary card in comparison layouts |
 | Gradient — dark | `#2D2D3F → #1A1A2E` | Second card in comparison layouts |
 | Gradient — steel | `#8C9BAA → #6B7280` | Third/fourth card in comparison layouts |
 
@@ -39,7 +41,7 @@ All generated diagrams must look like they belong in the same slide deck as exis
 - Never use more than **three distinct fills** in a single diagram (excluding white and light gray)
 - Purple is always the **lead accent** — use it for the first element, the most important label, or the primary callout
 - Dark and steel tones serve as **supporting fills** and never compete with purple for attention
-- Background is always **white** — never dark-mode slides
+- Background is always **white** — never dark-mode diagrams
 - Avoid saturated reds, greens, or blues outside the palette
 - Purple accent is applied **selectively** — only on: title keywords, icon fills inside active elements, subtitle phrases, question/callout boxes, checkmarks, and number badges. Never used for full paragraphs, borders, or large background areas
 
@@ -47,9 +49,12 @@ All generated diagrams must look like they belong in the same slide deck as exis
 
 ## Typography
 
+### Font Family
+**Primary font: Inter** (fallback: Plus Jakarta Sans). All text on every infographic — headings, body, labels — uses Inter. No other typeface is permitted.
+
 | Element | Style |
 |---|---|
-| Slide title | Large sans-serif (≈36–44pt equivalent), mixed colour: purple for the key phrase, black for the rest |
+| Diagram title | Large sans-serif (≈36–44pt equivalent), mixed colour: purple for the key phrase, black for the rest |
 | Section subtitle | ALL CAPS, small (≈10pt), letter-spacing 2–3px, gray or black |
 | Card title | Bold sans-serif, 16–20pt, black or purple |
 | Card subtitle / guiding question | Regular weight, purple, 12–14pt, used to frame the purpose of a section |
@@ -59,9 +64,9 @@ All generated diagrams must look like they belong in the same slide deck as exis
 | Emphasis | Bold individual words within body text for key terms (e.g., "data", "models", "deployment") — never italic, never underline |
 
 ### Title Pattern
-Every slide title follows a **split-colour pattern**:
-- The **topic keyword or phrase** is rendered in purple (`#6C63FF`)
-- The **contextual/descriptive remainder** is rendered in black (`#1A1A2E`)
+Every diagram title follows a **split-colour pattern**:
+- The **topic keyword or phrase** is rendered in purple (`#4F47E6`)
+- The **contextual/descriptive remainder** is rendered in black (`#0A0A0A`)
 - Examples: *"Retrieval Augmented Generation (RAG):* Giving GenAI your business knowledge" — purple portion first, black portion second
 - Colon or line break separates the two portions
 - Title is always **top-left aligned**, never centred
@@ -71,14 +76,14 @@ Every slide title follows a **split-colour pattern**:
 - No italic anywhere except guiding questions in canvas layouts
 - Purple text is reserved for **subtitles and callout phrases** — never full paragraphs
 - ALL CAPS only for small section labels (≈10pt or below)
-- All text is **sans-serif** throughout — no serif, monospace, or decorative fonts
+- All text uses **Inter** (or Plus Jakarta Sans) throughout — no serif, monospace, or decorative fonts
 
 ---
 
 ## Layout Principles
 
 ### Spacing
-- Generous horizontal margins — content never stretches full-width
+- Generous padding from canvas edges: **48–64px** on all sides
 - Consistent internal padding in all containers: ≈20–30px equivalent
 - Equal gaps between cards/phases in any row (no variable spacing)
 - Clear vertical separation between the diagram zone and the definition/takeaway zone
@@ -86,8 +91,6 @@ Every slide title follows a **split-colour pattern**:
 ### Alignment
 - Horizontal left-to-right is the dominant reading direction
 - Titles always top-left aligned
-- Pyne logo always top-right corner (small, unobtrusive)
-- Page numbers always bottom-right
 - Content is **centred within cards** but the overall composition is **left-anchored**
 
 ### Grid
@@ -102,7 +105,7 @@ Every slide title follows a **split-colour pattern**:
 
 | Shape | Usage |
 |---|---|
-| Rounded rectangle (r ≈ 8–12px) | Cards, containers, input/output boxes, definition boxes |
+| Rounded rectangle (r ≈ 8–16px) | Cards, containers, input/output boxes, definition boxes |
 | Circle | Icon containers, phase number badges, hub nodes in pinwheel layouts |
 | Pill / stadium shape | Tall comparison cards (Five Questions style) |
 | Dotted border | Trigger events, input containers, definition boxes — signals "context" or "boundary" |
@@ -111,8 +114,7 @@ Every slide title follows a **split-colour pattern**:
 | Arrow (bold) | Used only for canvas layouts pointing toward Impact/Insights |
 
 ### Shape Rules
-- **No drop shadows** on cards (use subtle background fill differentiation instead)
-- Exception: staged-progression cards may use a very faint shadow (≈2px blur, 5% opacity)
+- White cards use **subtle shadows** for depth — keep shadows faint and consistent (≈2–4px blur, 5–10% opacity)
 - **No 3D effects** anywhere
 - Borders are either **solid thin black/gray** or **dotted gray** — never coloured borders
 - Rounded corners are consistent: always the same radius within a single diagram
@@ -147,7 +149,7 @@ Never use the same line style for two different semantic purposes within one dia
 
 ### Arrow Rules
 - Arrows are **thin (1–1.5px)** with a small, simple triangle arrowhead — not oversized
-- Arrow colour: dark gray (`#6B7280`) or black for primary flow; purple (`#6C63FF`) for staged-progression connectors
+- Arrow colour: dark gray (`#6B7280`) or black for primary flow; purple (`#4F47E6`) for staged-progression connectors
 - **Primary flow arrows** are always **straight and horizontal** — no diagonal lines
 - For pipelines: arrows connect the **right edge of one box to the left edge of the next**
 - For staged-progressions: arrows sit **between cards**, vertically centred
@@ -205,24 +207,16 @@ Every concept-explainer and most pipeline diagrams include a **bottom section** 
 
 ---
 
-## Branded Elements
-
-- **Pyne logo**: always top-right corner, small and unobtrusive, present on every slide
-- **Page number**: always bottom-right, small regular-weight numeral
-- **Copyright mark**: used on proprietary frameworks (e.g., "Canvas©") — placed inline with the title, not as a footer
-
----
-
 ## Anti-Patterns (Never Do This)
 
-- Never use coloured backgrounds on the slide itself — always white
+- Never use coloured backgrounds on the diagram itself — always white
 - Never use more than one row of cards (keep everything in a single horizontal band)
 - Never use diagonal text or rotated elements
 - Never use gradients on text
 - Never use thick borders (>2px)
 - Never mix icon styles (e.g., some filled, some outlined)
 - Never use decorative elements (swirls, blobs, abstract shapes) that don't carry meaning
-- Never crowd a slide — if content doesn't fit in one horizontal row, simplify the message
+- Never crowd a diagram — if content doesn't fit in one horizontal row, simplify the message
 - Never use a legend or colour key — the layout itself should make relationships obvious
-- Never use serif, monospace, or decorative typefaces
+- Never use serif, monospace, or decorative typefaces — all text must be Inter (or Plus Jakarta Sans)
 - Never apply purple to borders, large background fills, or full paragraphs of text

@@ -8,7 +8,7 @@ from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 
-from src.config import settings
+from src.config import IMAGE_MODELS, settings
 from src.pipeline import generate_diagram
 from src.postprocessing import SLIDE_FORMATS
 
@@ -34,17 +34,31 @@ async def api_slide_formats():
     return SLIDE_FORMATS
 
 
+@app.get("/api/image-models")
+async def api_image_models():
+    """Return available image generation models for the UI dropdown."""
+    return IMAGE_MODELS
+
+
 @app.post("/api/generate")
 async def api_generate(request: Request):
     body = await request.json()
     brief = body.get("brief", "").strip()
     slide_format = body.get("slide_format", "original")
+    image_model = body.get("image_model")
 
     if not brief:
         return JSONResponse({"error": "Brief is required."}, status_code=400)
 
+    if image_model and image_model not in IMAGE_MODELS:
+        return JSONResponse({"error": f"Unknown image model: {image_model}"}, status_code=400)
+
     try:
-        result = await asyncio.to_thread(generate_diagram, brief, slide_format=slide_format)
+        result = await asyncio.to_thread(
+            generate_diagram, brief, slide_format=slide_format, image_model=image_model,
+        )
+    except ValueError as e:
+        return JSONResponse({"error": str(e)}, status_code=400)
     except Exception:
         logger.exception("Pipeline failed")
         return JSONResponse({"error": "Pipeline failed. Check server logs."}, status_code=500)

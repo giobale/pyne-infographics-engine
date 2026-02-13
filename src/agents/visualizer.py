@@ -3,7 +3,7 @@
 import base64
 import logging
 
-from src.config import client, settings
+from src.config import IMAGE_MODELS, client, get_google_client, settings
 from src.utils.prompt_loader import get_prompt
 
 logger = logging.getLogger(__name__)
@@ -19,38 +19,67 @@ def _get_system_prompt() -> str:
     return _system_prompt
 
 
-def generate_image(styled_description: str) -> bytes:
-    """
-    Generate an image using the configured image generation model.
+def _generate_openai(model: str, prompt: str) -> bytes:
+    """Generate an image via the OpenAI Images API."""
+    kwargs = dict(
+        model=model,
+        prompt=prompt,
+        size=settings.image_size.value,
+        quality=settings.image_quality.value,
+        n=1,
+    )
+    if model.startswith("dall-e"):
+        kwargs["response_format"] = "b64_json"
 
-    Prepends the visualizer system prompt to the styled description
-    to set the role and quality expectations for the image model.
-    Returns raw image bytes (PNG/WEBP/JPEG depending on config).
+    response = client.images.generate(**kwargs)
+    image_base64 = response.data[0].b64_json
+    return base64.b64decode(image_base64)
+
+
+def _generate_google(model: str, prompt: str) -> bytes:
+    """Generate an image via the Google GenAI API."""
+    from google.genai import types
+
+    google_client = get_google_client()
+    response = google_client.models.generate_content(
+        model=model,
+        contents=prompt,
+        config=types.GenerateContentConfig(
+            response_modalities=["IMAGE"],
+        ),
+    )
+    for part in response.candidates[0].content.parts:
+        if part.inline_data is not None:
+            return part.inline_data.data
+    raise RuntimeError(f"Gemini model {model} returned no image data")
+
+
+def generate_image(styled_description: str, image_model: str | None = None) -> bytes:
     """
+    Generate an image using the specified (or default) image generation model.
+
+    Routes to the correct provider (OpenAI or Google) based on the IMAGE_MODELS
+    registry. Returns raw image bytes (PNG/WEBP/JPEG depending on provider).
+    """
+    model = image_model or settings.image_model
+    provider = IMAGE_MODELS[model]["provider"]
+
     logger.info(
-        "Generating image with model=%s, size=%s, quality=%s",
-        settings.image_model,
+        "Generating image with model=%s, provider=%s, size=%s, quality=%s",
+        model,
+        provider,
         settings.image_size.value,
         settings.image_quality.value,
     )
 
     full_prompt = f"{_get_system_prompt()}\n\n{styled_description}"
 
-    kwargs = dict(
-        model=settings.image_model,
-        prompt=full_prompt,
-        size=settings.image_size.value,
-        quality=settings.image_quality.value,
-        n=1,
-    )
-    # gpt-image-1 returns base64 by default; DALL-E models need this explicitly
-    if settings.image_model.startswith("dall-e"):
-        kwargs["response_format"] = "b64_json"
-
-    response = client.images.generate(**kwargs)
-
-    image_base64 = response.data[0].b64_json
-    image_bytes = base64.b64decode(image_base64)
+    if provider == "openai":
+        image_bytes = _generate_openai(model, full_prompt)
+    elif provider == "google":
+        image_bytes = _generate_google(model, full_prompt)
+    else:
+        raise ValueError(f"Unknown provider '{provider}' for model '{model}'")
 
     logger.info("Generated image: %d bytes", len(image_bytes))
     return image_bytes

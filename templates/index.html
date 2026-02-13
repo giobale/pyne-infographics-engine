@@ -287,6 +287,8 @@
     <p class="hint">Describe the diagram you want to generate in natural language.</p>
     <textarea id="brief" placeholder="e.g. A pipeline diagram showing data flowing from Stripe and HubSpot through an ETL layer into a Snowflake warehouse, then to a BI dashboard"></textarea>
     <div class="options-row">
+      <label for="image-model">Image model</label>
+      <select id="image-model"></select>
       <label for="slide-format">Output size</label>
       <select id="slide-format"></select>
     </div>
@@ -325,6 +327,7 @@
   const stateLoading = document.getElementById('state-loading');
   const stateResult  = document.getElementById('state-result');
   const briefEl      = document.getElementById('brief');
+  const modelEl      = document.getElementById('image-model');
   const formatEl     = document.getElementById('slide-format');
   const btnGenerate  = document.getElementById('btn-generate');
   const btnAgain     = document.getElementById('btn-again');
@@ -333,6 +336,18 @@
   const resultImg    = document.getElementById('result-img');
   const badgeRounds  = document.getElementById('badge-rounds');
   const badgeApproved = document.getElementById('badge-approved');
+
+  // Populate image-model dropdown from the API
+  fetch('/api/image-models')
+    .then(function (r) { return r.json(); })
+    .then(function (models) {
+      Object.keys(models).forEach(function (key) {
+        var opt = document.createElement('option');
+        opt.value = key;
+        opt.textContent = models[key].label;
+        modelEl.appendChild(opt);
+      });
+    });
 
   // Populate slide-format dropdown from the API
   fetch('/api/slide-formats')
@@ -397,7 +412,7 @@
       const res = await fetch('/api/generate', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ brief: brief, slide_format: formatEl.value }),
+        body: JSON.stringify({ brief: brief, slide_format: formatEl.value, image_model: modelEl.value }),
       });
 
       const data = await res.json();

@@ -19,6 +19,8 @@ VALID_CATEGORIES = {
     "matrix",
     "wheel",
     "concept-explainer",
+    "venn",
+    "pie-breakdown",
 }
 
 

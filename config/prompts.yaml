@@ -32,6 +32,14 @@ retriever_classify: |
   - concept-explainer: Single focal diagram in the centre with a definition
     box and a takeaway/insight box below. Teaches one concept to a
     non-specialist audience.
+  - venn: Overlapping circles (2–4) where shared intersection zones carry
+    meaning. Each circle represents an equal peer element. No directional
+    flow — the layout emphasises shared relationships and mutual overlap.
+    Typically 2–4 circles with a central intersection.
+  - pie-breakdown: A proportional whole (pie or donut chart) divided into
+    segments, with each segment connected by leader lines to detailed label
+    cards. Encodes part-to-whole relationships. Typically 3–6 segments with
+    external annotation cards.
 
   AMBIGUITY RULE:
   If the request could map to two categories, choose the one whose spatial
@@ -191,8 +199,9 @@ visualizer_system: |
     or reinterpret any element.
   - Do not include figure titles, slide numbers, captions, or watermarks
     in the image.
-  - Output format: wide horizontal 16:9 landscape image.
-  - White background.
+  - Output format: wide horizontal, I will let you decide the exact
+    dimensions based on the content and knowing it will be used in a
+    presentation slide.
 
 critic: |
   CONTEXT:

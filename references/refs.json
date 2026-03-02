@@ -1,65 +1,114 @@
 [
   {
     "id": "ref_001",
-    "file": "images/rag_pipeline_explainer.png",
+    "file": "images/pipeline/rag_pipeline_explainer.png",
     "category": "pipeline",
     "description": "Left-to-right linear pipeline with five stages: (1) input container with a question, (2) document-search step, (3) knowledge-handoff step, (4) LLM generation step, (5) output container with an answer. Arrows connect each stage sequentially. Below the pipeline: a definition box on the left third and a three-part comparison zone (Without X / With X / Leader's Insight) on the right two-thirds.",
     "tags": ["pipeline", "concept-explainer", "input-output", "definition-box"]
   },
   {
     "id": "ref_002",
-    "file": "images/ai_agents_action_flow.png",
+    "file": "images/pipeline/ai_agents_action_flow.png",
     "category": "pipeline",
     "description": "Trigger-to-outcome process chain. A trigger event on the far left connects via arrows to five numbered sequential steps, each represented by an icon and label. The steps sit inside a bounded zone with a central badge identifying the agent type. The chain terminates on the right in an outcome list of three benefit statements. A definition box sits below the flow.",
     "tags": ["pipeline", "process-chain", "trigger-to-outcome", "definition-box"]
   },
   {
     "id": "ref_003",
-    "file": "images/pyne_value_chain_canvas.png",
+    "file": "images/canvas/pyne_value_chain_canvas.png",
     "category": "canvas",
     "description": "Single bordered framework grid spanning full width. Asymmetric column layout: a narrow left column (one tall cell: Context), a wide centre column (three stacked rows: Development, Capabilities, Guardrails), and a right column (two rows: Impact, Insights) whose outer edge tapers into a rightward-pointing arrow shape. Each cell contains a header, a subtitle, and a guiding question. Blank template with no data filled in.",
     "tags": ["canvas", "framework", "strategy", "grid-layout", "arrow-shape", "guiding-questions"]
   },
   {
     "id": "ref_004",
-    "file": "images/development_layer_three_stages.png",
+    "file": "images/staged-progression/development_layer_three_stages.png",
     "category": "staged-progression",
     "description": "Three equally-sized cards in a horizontal row connected by arrows. Each card contains: a number badge (1, 2, 3), an icon, a title, a role label with description text, and a guiding question at the bottom. Below the card row: two centred quotation lines.",
     "tags": ["staged-progression", "numbered", "cards", "data-value-chain", "three-stage", "quote-footer"]
   },
   {
     "id": "ref_005",
-    "file": "images/insights_to_implementation_timeline.png",
+    "file": "images/staged-progression/insights_to_implementation_timeline.png",
     "category": "staged-progression",
     "description": "Four-phase horizontal timeline. Each phase has a title, a subtitle, and detailed description text. Vertical dividers separate the phases. Iteration loops (circles with curved return arrows) appear between the middle two phases to indicate repeatable cycles. Labeled 'Insights' markers sit above each transition point, connected in a stepped ascending path. An entry arrow leads into the first phase from above.",
     "tags": ["staged-progression", "timeline", "innovation", "phases", "iterative-loops", "insights-labels", "text-heavy"]
   },
   {
     "id": "ref_006",
-    "file": "images/four_risk_categories_pinwheel.png",
+    "file": "images/wheel/four_risk_categories_pinwheel.png",
     "category": "wheel",
-    "description": "Four-node pinwheel arrangement in a 2×2 layout. Four circles are connected by an organic hourglass shape that pinches at the centre, forming a continuous clover-like silhouette. Each node contains an icon. Title and one-line description labels sit outside each node on its outer side. No arrows or connectors beyond the central organic shape.",
+    "description": "Four-node pinwheel arrangement in a 2x2 layout. Four circles are connected by an organic hourglass shape that pinches at the centre, forming a continuous clover-like silhouette. Each node contains an icon. Title and one-line description labels sit outside each node on its outer side. No arrows or connectors beyond the central organic shape.",
     "tags": ["hub-and-spoke", "risk", "four-quadrant", "pinwheel", "organic-shape"]
   },
   {
     "id": "ref_007",
-    "file": "images/risk_realities_four_cards.png",
+    "file": "images/comparison-cards/risk_realities_four_cards.png",
     "category": "comparison-cards",
     "description": "Four comparison cards in a horizontal row. Each card has a protruding icon circle at the top, a category title, a 'What it means' description section, and a 'Consequence' section with a concrete example. Cards represent distinct categories at the same level.",
     "tags": ["comparison-cards", "risk", "icon-top", "four-column", "consequence-examples", "protruding-circles"]
   },
   {
     "id": "ref_008",
-    "file": "images/ai_opportunity_map.png",
+    "file": "images/matrix/ai_opportunity_map.png",
     "category": "matrix",
-    "description": "Split layout with two side-by-side regions. Left half: a text container with two sequential instruction steps. Right half: a 2×2 quadrant matrix with labeled axes (vertical: Impact, horizontal: Feasibility). Two opposing quadrants carry priority labels; the other two are empty. The matrix is a blank template with no data points plotted.",
+    "description": "Split layout with two side-by-side regions. Left half: a text container with two sequential instruction steps. Right half: a 2x2 quadrant matrix with labeled axes (vertical: Impact, horizontal: Feasibility). Two opposing quadrants carry priority labels; the other two are empty. The matrix is a blank template with no data points plotted.",
     "tags": ["matrix", "2x2", "prioritisation", "quadrant", "split-layout", "template", "steps-plus-visual"]
   },
   {
     "id": "ref_009",
-    "file": "images/five_questions_leaders_ai.png",
+    "file": "images/comparison-cards/five_questions_leaders_ai.png",
     "category": "comparison-cards",
     "description": "Five pill-shaped cards in a horizontal row with no connectors between them. Each card contains: an inset icon at the top, a category title, a guiding question, and a large number at the bottom. Cards stand independently as a numbered set.",
     "tags": ["comparison-cards", "numbered", "pill-shape", "leadership", "five-column", "icon-inset", "guiding-questions"]
+  },
+  {
+    "id": "ref_010",
+    "file": "images/staged-progression/chevron_five_stage_process.jpg",
+    "category": "staged-progression",
+    "description": "Five overlapping chevron arrow shapes in a left-to-right horizontal row, each stepping slightly lower than the previous. Each chevron contains a large number badge (01-05), an icon at the top, a description text block in the middle, and a footer label at the bottom. Chevrons overlap to imply sequential flow without explicit connector arrows.",
+    "tags": ["staged-progression", "chevron", "numbered", "five-stage", "overlapping", "icon-top"]
+  },
+  {
+    "id": "ref_011",
+    "file": "images/wheel/five_arrow_cycle_wheel.jpg",
+    "category": "wheel",
+    "description": "Five curved arrow segments arranged in a continuous clockwise circle forming a cycle. Each arrow flows into the next, with a small icon circle at each junction point. A central hub circle contains a title. Five text blocks with titles and descriptions radiate outward from each segment.",
+    "tags": ["wheel", "cyclical", "five-segment", "arrows", "hub-and-spoke", "radiating-labels"]
+  },
+  {
+    "id": "ref_012",
+    "file": "images/wheel/six_segment_donut_wheel.jpg",
+    "category": "wheel",
+    "description": "Six segments forming a donut-shaped ring around a central hub circle. Each segment has a numbered icon badge at its outer edge. Six text blocks with titles and descriptions are positioned around the ring's perimeter, connected to their segments by straight leader lines. Central hub contains a title.",
+    "tags": ["wheel", "donut", "six-segment", "numbered", "leader-lines", "radiating-labels"]
+  },
+  {
+    "id": "ref_013",
+    "file": "images/venn/three_circle_venn_overlap.jpg",
+    "category": "venn",
+    "description": "Three large circles overlapping in a Venn arrangement, forming shared intersection zones. Each circle is numbered (01, 02, 03) and contains an icon and a description label. A small central hub circle sits at the triple-overlap point. No directional flow — the layout emphasises shared relationships between three equal elements.",
+    "tags": ["venn", "overlap", "three-element", "numbered", "central-hub", "non-directional"]
+  },
+  {
+    "id": "ref_014",
+    "file": "images/pie-breakdown/pie_slice_breakdown_labels.jpg",
+    "category": "pie-breakdown",
+    "description": "A pie chart divided into five unequal slices radiating from a central label circle. Each slice connects via a short line to a numbered pill-shaped card positioned to the right in a stacked vertical list. Each card contains an icon, a title, and description text. The layout pairs a proportional whole (pie) with detailed labels (cards).",
+    "tags": ["pie-breakdown", "five-segment", "numbered", "pill-cards", "leader-lines", "part-to-whole"]
+  },
+  {
+    "id": "ref_015",
+    "file": "images/staged-progression/winding_path_timeline.jpg",
+    "category": "staged-progression",
+    "description": "Five circular nodes connected by a sinuous S-curve path that winds left to right. Nodes alternate above and below the path, each containing an icon. A date badge sits beside each node. Description text blocks appear above or below each node depending on its position. The winding path implies temporal or sequential progression.",
+    "tags": ["staged-progression", "timeline", "winding-path", "five-stage", "alternating", "date-badges", "icon-circles"]
+  },
+  {
+    "id": "ref_016",
+    "file": "images/staged-progression/zigzag_five_step_circles.png",
+    "category": "staged-progression",
+    "description": "Five numbered circles arranged in a zigzag pattern — three on the upper row and two on the lower row, staggered so the sequence reads top-bottom-top-bottom-top. Each circle contains an icon and has a text label above or below. No explicit connectors between circles; the numbering and spatial offset imply sequential order.",
+    "tags": ["staged-progression", "zigzag", "numbered", "five-stage", "icon-circles", "no-connectors"]
   }
 ]

@@ -136,7 +136,7 @@ Each reference is a metadata record with three fields that serve distinct purpos
 ```json
 {
   "id": "ref_001",
-  "file": "images/example.png",
+  "file": "images/pipeline/example.png",
   "category": "pipeline",
   "description": "Multi-source ingestion flowing from 4 parallel inputs through transformation layer into single destination",
   "tags": ["pipeline", "concept-explainer", "input-output"]
@@ -182,6 +182,8 @@ Encodes the complete Pyne visual identity: colour palette, typography, layout gr
 8. **Do not let the Critic change the design system.** The Critic may not alter colour palettes, font choices, or brand styling unless a specific style choice directly causes a readability failure. Aesthetic consistency is the Stylist's domain.
 
 9. **Keep descriptions structural.** When adding references to `refs.json`, describe what you see in terms of element count, spatial arrangement, flow direction, containment, and hierarchy — never in terms of the business topic depicted.
+
+10. **Keep categories in sync across all three sources.** When adding a new category to `refs.json`, you **must** also add it to `VALID_CATEGORIES` in `src/agents/retriever.py` and to the `CATEGORY TAXONOMY` section in `config/prompts.yaml`. All three must list the same set of categories. A category that exists in only one or two of these locations is a bug.
 
 ## Workflow Orchestration
 

@@ -272,15 +272,6 @@
       color: var(--gray);
     }
 
-    .badge.approved {
-      background: #ECFDF5;
-      color: #059669;
-    }
-
-    .badge.not-approved {
-      background: #FEF3C7;
-      color: #D97706;
-    }
 
     .result-actions {
       display: flex;
@@ -399,16 +390,6 @@
       flex: 1;
     }
 
-    .history-status {
-      font-size: 11px;
-      font-weight: 500;
-      padding: 2px 8px;
-      border-radius: 6px;
-      flex-shrink: 0;
-    }
-
-    .history-status.approved { background: #ECFDF5; color: #059669; }
-    .history-status.not-approved { background: #FEF3C7; color: #D97706; }
 
     /* ── Error ────────────────────────────────── */
 
@@ -605,7 +586,6 @@
     <img id="result-img" class="result-image" src="" alt="Generated diagram" />
     <div class="meta-row">
       <span class="badge" id="badge-rounds"></span>
-      <span class="badge" id="badge-approved"></span>
     </div>
 
     <!-- Improvement section -->
@@ -648,7 +628,6 @@
   const stepText     = document.getElementById('step-text');
   const resultImg    = document.getElementById('result-img');
   const badgeRounds  = document.getElementById('badge-rounds');
-  const badgeApproved = document.getElementById('badge-approved');
   const improveInput = document.getElementById('improve-input');
   const improveError = document.getElementById('improve-error');
   const improveLoading = document.getElementById('improve-loading');
@@ -826,24 +805,17 @@
       summaryEl.className = 'history-summary';
       summaryEl.textContent = item.summary;
 
-      var statusEl = document.createElement('span');
-      statusEl.className = 'history-status ' + (item.approved ? 'approved' : 'not-approved');
-      statusEl.textContent = item.approved ? 'Approved' : 'Not approved';
-
       div.appendChild(numEl);
       div.appendChild(img);
       div.appendChild(summaryEl);
-      div.appendChild(statusEl);
 
       historyList.appendChild(div);
     });
   }
 
-  function showResult(imageUrl, roundsText, approved, runDir) {
+  function showResult(imageUrl, roundsText, runDir) {
     resultImg.src = imageUrl + '?t=' + Date.now();
     badgeRounds.textContent = roundsText;
-    badgeApproved.textContent = approved ? 'Approved' : 'Max rounds reached';
-    badgeApproved.className = 'badge ' + (approved ? 'approved' : 'not-approved');
     currentRunDir = runDir;
 
     stopStepProgress();
@@ -890,7 +862,7 @@
       }
 
       var roundsText = data.rounds_taken === 1 ? '1 round' : data.rounds_taken + ' rounds';
-      showResult(data.image_url, roundsText, data.approved, data.run_dir);
+      showResult(data.image_url, roundsText, data.run_dir);
 
     } catch (err) {
       stopStepProgress();
@@ -941,11 +913,9 @@
       // Update image
       resultImg.src = data.image_url + '?t=' + Date.now();
 
-      // Update badges
+      // Update badge
       var totalRounds = data.history.length;
       badgeRounds.textContent = totalRounds + (totalRounds === 1 ? ' improvement' : ' improvements');
-      badgeApproved.textContent = data.approved ? 'Approved' : 'Not approved';
-      badgeApproved.className = 'badge ' + (data.approved ? 'approved' : 'not-approved');
 
       // Update history
       improvementHistory = data.history;

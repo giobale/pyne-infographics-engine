@@ -317,6 +317,16 @@ def improve_diagram(
     merged_description = _merge_description(last_description, instruction, history_text)
     logger.info("Description merged (%d words)", len(merged_description.split()))
 
+    # Save pre-restyle artifact for debuggability
+    _save_text(run_dir, f"05_improvement_{round_number}_merged.md", merged_description)
+
+    # Restyle: enforce style guide on merged description
+    _step("Applying style")
+    logger.info("--- Improvement %d: Stylist (restyle) ---", round_number)
+    category = run_meta.get("category", "")
+    merged_description = stylist.restyle(merged_description, category)
+    logger.info("Description restyled (%d words)", len(merged_description.split()))
+
     # Generate improved image
     _step("Generating image")
     logger.info("--- Improvement %d: Visualizer (edit) ---", round_number)

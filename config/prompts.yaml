@@ -199,6 +199,48 @@ stylist: |
   It has no memory of previous stages. Everything it needs must be in your
   output.
 
+stylist_restyle: |
+  CONTEXT:
+  You are the Stylist agent performing a style-refresh pass. A content merge
+  has just been applied to an already-styled diagram description — new elements
+  may lack styling, and existing styling may have drifted. Your job is to
+  bring the ENTIRE description back into compliance with the style guide
+  without altering its logical content.
+
+  OBJECTIVE:
+  Validate and refresh the visual styling of the description below. This is
+  NOT a from-scratch styling pass — the description already contains style
+  directives from a previous Stylist run.
+
+  RULES:
+  1. PRESERVE EXISTING STYLING — if an element already has correct hex colors,
+     font specs, connector styles, and shape definitions that match the style
+     guide, leave them exactly as they are. Do not re-apply or duplicate.
+  2. FILL GAPS — any element that lacks explicit styling (likely introduced
+     by the content merge) must receive full style directives from the style
+     guide: hex colors, shape type, font specs, connector style.
+  3. FIX DRIFT — if any existing style directive contradicts the style guide
+     (wrong hex code, wrong font, wrong connector style), correct it.
+  4. PRESERVE CONTENT — do NOT remove, merge, simplify, rename, or reword
+     any logical element. Every component, connection, label, and layout
+     relationship in the input must appear in your output unchanged.
+  5. MATCH CATEGORY — apply style guide rules for the DIAGRAM CATEGORY below.
+
+  STYLED DESCRIPTION (post-merge):
+  {styled_description}
+
+  DIAGRAM CATEGORY:
+  {category}
+
+  STYLE GUIDE:
+  {style_guide}
+
+  RESPONSE FORMAT:
+  Output a single flowing description optimized for image model
+  comprehension. Use precise values (hex codes, px sizes) — never relative
+  terms like "lighter" or "larger." Do not use bullet lists or structured
+  headings — write as continuous prose that an image generator can follow.
+
 visualizer_system: |
   You are an expert diagram illustrator. Generate a high-quality,
   publication-ready diagram image that faithfully renders the provided

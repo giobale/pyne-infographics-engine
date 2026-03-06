@@ -73,7 +73,7 @@ planner: |
 
   OBJECTIVE:
   Produce a detailed structural specification for a diagram that faithfully
-  represents the user's request. Study the reference examples to learn
+  represents a vsiual breakdown of the user's request. Study the reference examples to learn
   spatial patterns (element arrangement, flow topology, grouping strategies),
   then apply those patterns to the new content.
 
@@ -117,6 +117,10 @@ planner: |
   CONNECTIONS:
   Every arrow or line: source element → destination element, direction, line
   semantic (primary flow vs. auxiliary/optional), and any label text.
+  State the EXACT total number of arrows. Use the minimum needed to convey
+  the diagram's logic — one arrow per logical relationship, not per sub-item.
+  If grouped elements share a single connection to another element, use ONE
+  arrow from the group container, not separate arrows from each member.
 
   GROUPING:
   Logical clusters, section containers, or background regions. Specify which
@@ -203,6 +207,10 @@ visualizer_system: |
   RULES:
   - Implement the description EXACTLY as specified — do not add, remove,
     or reinterpret any element.
+  - ARROW FIDELITY: Render ONLY the arrows explicitly described. If the
+    description specifies N arrows, the output must contain exactly N —
+    no implied, duplicated, or decorative arrows. An arrow with no
+    described source–destination pair must not exist in the image.
   - Do not include figure titles, slide numbers, captions, or watermarks
     in the image.
   - Fill the ENTIRE canvas edge-to-edge. Use all available space.
@@ -241,6 +249,11 @@ critic: |
      Special check: compare element count in the image against the
      description. If elements were lost during rendering, flag them
      specifically.
+     ARROW COUNT CHECK: Count every distinct arrow in the rendered image
+     and compare against the description's connection list. Extra arrows
+     not in the description are hallucinations — remove them in your
+     revision. Duplicate or overlapping arrows between the same element
+     pair count as hallucinations.
 
   2. READABILITY: Are all labels legible and correctly spelled? Is the flow
      direction unambiguous? Can the diagram be understood without

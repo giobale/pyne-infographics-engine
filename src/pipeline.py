@@ -6,6 +6,8 @@ import time
 from datetime import datetime
 from pathlib import Path
 
+from collections.abc import Callable
+
 from src.agents import critic, planner, retriever, stylist, visualizer
 from src.config import client, settings
 from src.models import ImprovementResult, ImprovementRound, PipelineResult, RunMetadata
@@ -243,6 +245,7 @@ def improve_diagram(
     instruction: str,
     image_model: str | None = None,
     branch_from_round: int | None = None,
+    progress_callback: Callable[[str], None] | None = None,
 ) -> ImprovementResult:
     """
     Apply a user-driven improvement to an existing diagram.
@@ -258,6 +261,10 @@ def improve_diagram(
     Returns:
         ImprovementResult with the new image and updated history.
     """
+    def _step(label: str) -> None:
+        if progress_callback is not None:
+            progress_callback(label)
+
     # Validate run_dir is under output_dir
     try:
         run_dir.resolve().relative_to(settings.output_dir.resolve())
@@ -267,6 +274,7 @@ def improve_diagram(
     if not run_dir.exists():
         raise FileNotFoundError(f"Run directory not found: {run_dir}")
 
+    _step("Loading context")
     logger.info("=== Improvement started === Run dir: %s", run_dir)
 
     # Load context
@@ -299,21 +307,25 @@ def improve_diagram(
     logger.info("Improvement round %d, instruction: %s", round_number, instruction[:80])
 
     # Generate summary
+    _step("Summarising instruction")
     summary = _generate_summary(instruction)
     logger.info("Summary: %s", summary)
 
     # Merge instruction into description
+    _step("Merging description")
     history_text = _format_history_for_prompt(history)
     merged_description = _merge_description(last_description, instruction, history_text)
     logger.info("Description merged (%d words)", len(merged_description.split()))
 
     # Generate improved image
+    _step("Generating image")
     logger.info("--- Improvement %d: Visualizer (edit) ---", round_number)
     new_image_bytes = visualizer.edit_image(
         merged_description, last_image_bytes, image_model=image_model
     )
 
     # Critic evaluation
+    _step("Evaluating quality")
     logger.info("--- Improvement %d: Critic ---", round_number)
     critique = critic.evaluate_improvement(
         image_bytes=new_image_bytes,
@@ -328,6 +340,7 @@ def improve_diagram(
 
     # One auto-retry if critic rejects
     if not approved and critique.refined_description:
+        _step("Refining")
         logger.info("--- Improvement %d: Auto-retry with critic revision ---", round_number)
         current_description = critique.refined_description
         new_image_bytes = visualizer.edit_image(
@@ -344,6 +357,7 @@ def improve_diagram(
         critique = retry_critique
 
     # Save artifacts
+    _step("Saving artifacts")
     final_image_bytes = new_image_bytes
     img_filename = f"05_improvement_{round_number}_image.png"
     save_image(new_image_bytes, run_dir / img_filename)

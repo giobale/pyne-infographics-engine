@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SalesBanana</title>
+  <title>SalesBanana 🍌</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -677,7 +677,7 @@
       <div id="improve-error" class="error-box"></div>
       <div class="improve-loading" id="improve-loading">
         <div class="spinner-small"></div>
-        <span>Applying improvement...</span>
+        <span id="improve-step-text">Applying improvement...</span>
       </div>
       <div class="improve-btn-row">
         <button id="btn-again" class="btn btn-secondary" type="button">Generate Another</button>
@@ -726,6 +726,7 @@
   const improveInput = document.getElementById('improve-input');
   const improveError = document.getElementById('improve-error');
   const improveLoading = document.getElementById('improve-loading');
+  const improveStepText = document.getElementById('improve-step-text');
   const improveHistory = document.getElementById('improve-history');
   const historyList  = document.getElementById('history-list');
   const confirmModal = document.getElementById('confirm-modal');
@@ -1117,29 +1118,58 @@
         payload.branch_from_round = selectedBranchRound;
       }
 
-      var res = await fetch('/api/improve', {
+      var res = await fetch('/api/improve-stream', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
       });
 
-      var data = await res.json();
-
       if (!res.ok) {
-        throw new Error(data.error || 'Improvement failed.');
+        var errData = await res.json();
+        throw new Error(errData.error || 'Improvement failed.');
       }
 
-      // Update image and track latest URL
-      currentImageUrl = data.image_url;
-      resultImg.src = data.image_url + '?t=' + Date.now();
+      var reader = res.body.getReader();
+      var decoder = new TextDecoder();
+      var buffer = '';
 
-      // Update history and clear branch selection
-      improvementHistory = data.history;
-      selectedBranchRound = null;
-      renderHistory();
+      while (true) {
+        var chunk = await reader.read();
+        if (chunk.done) break;
+        buffer += decoder.decode(chunk.value, { stream: true });
 
-      // Clear input
-      improveInput.value = '';
+        // Parse SSE events from buffer
+        var parts = buffer.split('\n\n');
+        buffer = parts.pop(); // keep incomplete last part
+        for (var i = 0; i < parts.length; i++) {
+          var block = parts[i].trim();
+          if (!block) continue;
+          var eventType = 'message';
+          var dataLine = '';
+          var lines = block.split('\n');
+          for (var j = 0; j < lines.length; j++) {
+            if (lines[j].startsWith('event: ')) {
+              eventType = lines[j].slice(7);
+            } else if (lines[j].startsWith('data: ')) {
+              dataLine = lines[j].slice(6);
+            }
+          }
+
+          if (eventType === 'step') {
+            improveStepText.textContent = dataLine + '...';
+          } else if (eventType === 'done') {
+            var data = JSON.parse(dataLine);
+            currentImageUrl = data.image_url;
+            resultImg.src = data.image_url + '?t=' + Date.now();
+            improvementHistory = data.history;
+            selectedBranchRound = null;
+            renderHistory();
+            improveInput.value = '';
+          } else if (eventType === 'error') {
+            throw new Error(dataLine || 'Improvement failed.');
+          }
+        }
+      }
 
     } catch (err) {
       improveError.textContent = err.message;
@@ -1148,7 +1178,8 @@
       isImproving = false;
       btnImprove.disabled = false;
       improveLoading.classList.remove('active');
-      renderHistory(); // Re-render to remove disabled state
+      improveStepText.textContent = 'Applying improvement...';
+      renderHistory();
     }
   }
 
